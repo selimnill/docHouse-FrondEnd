@@ -1,0 +1,24 @@
+.heroSect {
+    background: linear-gradient(to right, rgba(10, 9, 9, 0.9), rgba(0, 0, 0, 0.6)), url('../../assets/images/chair.png');
+    height: 500px;
+    width: 900px;
+    background-repeat: no-repeat;
+}
+.info p{
+    margin-top: 250px;
+    width: 700px;
+    position: absolute;
+    margin-left: 100px;
+}
+.info h2{
+    position: absolute;
+    margin-top: 150px;
+    margin-left: 200px;
+}
+
+.info button{
+    position: absolute;
+    margin-left: 350px;
+    width: 15%;
+    margin-top: 380px;
+}
