@@ -15,7 +15,7 @@ const Location = () => {
                     <p className='icons text-5xl mx-2'><FaSearchLocation /></p>
                     <div>
                         <h3 className="text-2xl font-bold">Visit Our Location</h3>
-                        <p>NY 12444, California, USA</p>
+                        <p className='font-semibold'>NY 12444, California, USA</p>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@ const Location = () => {
                         <p className='icons text-5xl mx-2'><FaClock /></p>
                         <div>
                             <h3 className="text-2xl font-bold">Opening Hours</h3>
-                            <p>10 am TO 5 pm</p>
+                            <p className='font-semibold'>10 am To 5 pm</p>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@ const Location = () => {
                         <p className='icons text-5xl mx-2'><FaPhoneVolume /></p>
                         <div>
                             <h3 className="text-2xl font-bold">Contact Us</h3>
-                            <p>+440 1856 23645</p>
+                            <p className='font-semibold'>+440 1856 23645</p>
                         </div>
                     </div>
                 </div>

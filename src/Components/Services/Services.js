@@ -3,6 +3,7 @@ import p1 from '../../assets/images/cavity.png'
 import p2 from '../../assets/images/fluoride.png'
 import p3 from '../../assets/images/whitening.png'
 import p4 from '../../assets/images/treatment.png'
+import { Link } from 'react-router-dom';
 
 const Services = () => {
     return (
@@ -34,7 +35,7 @@ const Services = () => {
                 <div className='ml-14'>
                     <h1 className="text-3xl font-bold">Exceptional Dental <br />Care on your terms.</h1>
                     <p className='mt-3 w-96'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, expedita. Autem laboriosam reprehenderit dicta doloremque sapiente veniam soluta placeat obcaecati enim inventore, porro ducimus beatae, similique iure esse cupiditate sit provident amet tenetur aperiam eos quo, officia quidem perferendis. Sapiente!</p> <br /> <br />
-                    <button className="btn btn-warning rounded font-bold">get started</button>
+                    <Link to='/appointment'><button className="btn bg-gradient-to-r from-yellow-500  to-orange-500 rounded font-bold">get started</button></Link>
                 </div>
             </div>
         </div>

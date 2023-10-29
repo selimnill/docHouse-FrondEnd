@@ -9,10 +9,9 @@ const Testimonials = () => {
         <div>
             <h2 className="text-2xl mt-20 ml-10 text-yellow-800 font-bold">Testimonials</h2>
             <h2 className="text-3xl font-bold ml-10 mt-4">What Our Patients Says</h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center ml-32'>
-                <div className="card w-96 bg-base-100 shadow-xl mt-16 ">
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center ml-12'>
+                <div className="card w-96 bg-base-100 shadow-xl mt-16 m-5">
                     <div className="card-body">
-
                         <div className='mt-16 w-80'>
                             <p className='text-lg'> Lorem, ipsum dolor sit amet consect adipisicing elit. Nobis architecto in voluptatum voluptas error dolorem
                             </p>

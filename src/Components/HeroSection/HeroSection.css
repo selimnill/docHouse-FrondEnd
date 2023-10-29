@@ -22,3 +22,15 @@
     width: 15%;
     margin-top: 380px;
 }
+
+@media screen and (max-width:'600px') {
+    .heroSect{
+        background-size: 60px;
+        width: 70px;
+        height: 60px;
+    }
+    .info{
+        font-size: 20px;
+        margin-left: 560px;
+    }
+}
