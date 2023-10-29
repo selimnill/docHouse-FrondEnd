@@ -13,12 +13,11 @@
 .info h2{
     position: absolute;
     margin-top: 150px;
-    margin-left: 200px;
+    width: 900px;
 }
 
 .info button{
     position: absolute;
-    margin-left: 350px;
     width: 15%;
     margin-top: 380px;
 }

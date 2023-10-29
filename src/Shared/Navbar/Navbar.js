@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Navbar = () => {
+
+    const { user, logOut } = useContext(AuthContext);
+
     return (
         <div className="navbar bg-gray font-bold sticky top-0 bg-slate-300">
             <div className="navbar-start">
@@ -15,19 +19,32 @@ const Navbar = () => {
                         <li><Link to='/appointment'>Appointment</Link></li>
                         <li><Link to='/reviews'>Reviews</Link></li>
                         <li><Link to='/contact'>Contact Us</Link></li>
+                        {user?.uid ?
+                        <>
+                            <li><Link to='/dashboard'>Dashboard</Link></li>
+                            <li><button onClick={logOut}>Sign Out</button></li>
+                        </>
+                        :
                         <li><Link to='/login'>Login</Link></li>
+                    }
                     </ul>
                 </div>
                 <Link to='/' className="btn btn-ghost normal-case text-xl font-extrabold">Doctor's House</Link>
             </div>
             <div className="navbar-end hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 mx-3">
+                <ul className="menu menu-horizontal px-1">
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/about'>About</Link></li>
                     <li><Link to='/appointment'>Appointment</Link></li>
-                    <li><Link to='/reviews'>Reviews</Link></li>
                     <li><Link to='/contact'>Contact Us</Link></li>
-                    <li><Link to='/login'>Login</Link></li>
+                    {user?.uid ?
+                        <>
+                            <li><Link to='/dashboard'>Dashboard</Link></li>
+                            <li><button onClick={logOut}>Sign Out</button></li>
+                        </>
+                        :
+                        <li><Link to='/login'>Login</Link></li>
+                    }
                 </ul>
             </div>
         </div>

@@ -7,6 +7,8 @@ import Reviews from '../../Components/Reviews/Reviews';
 import Contact from '../../Components/Contact/Contact';
 import Login from '../../Pages/Login/Login';
 import Signup from '../../Pages/Signup/Signup';
+import Dashboard from '../../Pages/Dashboard/Dashboard';
+import PrivateRoute from './PrivateRoute';
 
 export const router = createBrowserRouter([
     {
@@ -40,6 +42,10 @@ export const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup></Signup>
+            },
+            {
+                path: '/dashboard',
+                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
             }
             
         ]
