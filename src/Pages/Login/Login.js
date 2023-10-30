@@ -38,7 +38,17 @@ const Login = () => {
 
 
 
-    
+    const handleGoogleSignIn = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithGoogle(provider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+
+            })
+            .catch(err => console.log(err));
+    }
 
 
     return (
