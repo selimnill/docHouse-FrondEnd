@@ -1,13 +1,35 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import { FaMoon } from "react-icons/fa";
+import { FaSun } from "react-icons/fa";
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
 
+    const [theme, setTheme] = useState(
+        localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+    );
+
+    // update state on toggle
+    const handleToggle = (e) => {
+        if (e.target.checked) {
+            setTheme("dark");
+        } else {
+            setTheme("light");
+        }
+    };
+    // set theme state in localstorage on mount & also update localstorage on state change
+    useEffect(() => {
+        localStorage.setItem("theme", theme);
+        const localTheme = localStorage.getItem("theme");
+        // add custom data-theme attribute to html tag required to update theme using DaisyUI
+        document.querySelector("html").setAttribute("data-theme", localTheme);
+    }, [theme]);
+
     return (
-        <div className="navbar bg-gray font-bold sticky top-0 bg-slate-300">
+        <div className="navbar bg-gray font-bold sticky top-0 ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -20,18 +42,19 @@ const Navbar = () => {
                         <li><Link to='/reviews'>Reviews</Link></li>
                         <li><Link to='/contact'>Contact Us</Link></li>
                         {user?.uid ?
-                        <>
-                            <li><Link to='/dashboard'>Dashboard</Link></li>
-                            <li><button onClick={logOut}>Sign Out</button></li>
-                        </>
-                        :
-                        <li><Link to='/login'>Login</Link></li>
-                    }
+                            <>
+                                <li><Link to='/dashboard'>Dashboard</Link></li>
+                                <li><Link to='/dashboard'>Dashboard</Link></li>
+                                <li><button onClick={logOut}>Sign Out</button></li>
+                            </>
+                            :
+                            <li><Link to='/login'>Login</Link></li>
+                        }
                     </ul>
                 </div>
                 <Link to='/' className="btn btn-ghost normal-case text-xl font-extrabold">Doctor's House</Link>
             </div>
-            <div className="navbar-end hidden lg:flex">
+            <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/about'>About</Link></li>
@@ -41,10 +64,18 @@ const Navbar = () => {
                         <>
                             <li><Link to='/dashboard'>Dashboard</Link></li>
                             <li><button onClick={logOut}>Sign Out</button></li>
+                            <p className='mt-1.5 font-bold text-[20px]'>{user?.displayName}</p>
                         </>
                         :
                         <li><Link to='/login'>Login</Link></li>
                     }
+                    <p className="btn btn-square btn-ghost mx-3 mt-[-5px]"  onClick={handleToggle}>
+                        <label className="swap swap-rotate w-12 h-12">
+                            <input type="checkbox"/>
+                            <span alt="dark" className="w-8 h-8 swap-off"><FaMoon className="w-8 h-6 "/></span>
+                            <span alt="light" className="w-8 h-8 swap-on"><FaSun className="w-8 h-6"/></span>
+                        </label>
+                    </p>
                 </ul>
             </div>
         </div>

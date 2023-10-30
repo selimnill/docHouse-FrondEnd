@@ -3,18 +3,19 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const [loginError, setLoginError] = useState('');
-    const location = useLocation();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
 
-    const { signIn } = useContext(AuthContext);
+    const { signIn, signInWithGoogle } = useContext(AuthContext);
 
     const handleLogin = data => {
         console.log(data);
@@ -25,7 +26,7 @@ const Login = () => {
                 console.log(user);
                 toast.success('User Login Successfully.');
 
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 console.log(err.message);
@@ -34,6 +35,22 @@ const Login = () => {
 
 
     }
+
+
+
+    const handleGoogleSignIn = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithGoogle(provider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+
+            })
+            .catch(err => console.log(err));
+    }
+
+
     return (
         <div className='h-[800px] flex justify-center items-center'>
             <div className="w-96 p-7"><h2 className="text-4xl text-center mb-10 font-bold">Login</h2>
@@ -62,7 +79,7 @@ const Login = () => {
                     <input className='btn btn-warning font-bold w-full mt-7' type="submit" />
                     <p>New to Doctor's House? <Link className='text-orange-700 font-semibold' to='/signup'>Create new account</Link> </p>
                     <br /> <br /><br />
-                    <input className='btn btn-warning btn-outline font-bold w-full mt-7' type="submit" value='continue with google' />
+                    <input onClick={handleGoogleSignIn} className='btn btn-warning btn-outline font-bold w-full mt-7' type="submit" value='continue with google' />
                 </form>
             </div>
         </div>

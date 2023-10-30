@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 
 
@@ -11,23 +12,28 @@ const Signup = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const [signUpError, setSignUPError] = useState('')
-    const { signup, updateUser } = useContext(AuthContext);
+    const { signup, updateUser, signInWithGoogle } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleSignup = data => {
         console.log(data);
-        const email = data.email;
-        const password = data.password;
 
-        signup(email, password)
+        signup(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success('User Created Successfully.');
+                toast.success('User Created Successfully.')
+                navigate(from, {replace: true});
                 const userInfo = {
                     displayName: data.name
                 }
                 updateUser(userInfo)
-                    .then(() => { })
+                    .then(() => {
+                        console.log(userInfo);
+                    })
                     .catch(err => console.log(err));
             })
             .catch(error => {
@@ -36,6 +42,17 @@ const Signup = () => {
             });
     }
 
+    const handleGoogleSignIn = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithGoogle(provider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, {replace: true});
+
+            })
+            .catch(err => console.log(err));
+    }
 
     return (
         <div className='h-[800px] flex justify-center items-center'>
@@ -74,7 +91,7 @@ const Signup = () => {
                     {signUpError && <p className='text-red-600'>{signUpError}</p>}
                     <p>Already have an account? <Link className='text-orange-700 font-semibold' to='/login'>Please Login</Link> </p>
                     <br /> <br /><br />
-                    <input className='btn btn-warning btn-outline font-bold w-full mt-7' type="submit" value='continue with google' />
+                    <input onClick={handleGoogleSignIn} className='btn btn-warning btn-outline font-bold w-full mt-7' value='continue with google' />
                 </form>
             </div>
         </div>
