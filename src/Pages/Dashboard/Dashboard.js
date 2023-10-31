@@ -1,9 +1,11 @@
 import React from 'react';
+import MyAppointment from './MyAppointment';
+import Allusers from './Allusers';
 
 const Dashboard = () => {
     return (
         <div>
-            dashboard loading.!
+            <MyAppointment></MyAppointment>
         </div>
     );
 };

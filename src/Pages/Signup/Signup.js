@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Contexts/AuthProvider';
 import toast from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
+import useToken from '../../Hooks/UseToken';
 
 
 
@@ -11,12 +12,20 @@ const Signup = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const [signUpError, setSignUPError] = useState('')
     const { signup, updateUser, signInWithGoogle } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const [signUpError, setSignUPError] = useState('')
+    const [userEmail, setUserEmail] = useState('');
+    const [token] = useToken(userEmail);
+
     const location = useLocation();
+    const navigate = useNavigate();
+
 
     const from = location.state?.from?.pathname || '/';
+
+    if(token){
+        navigate('/');
+    }
 
     const handleSignup = data => {
         console.log(data);
@@ -26,13 +35,13 @@ const Signup = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('User Created Successfully.')
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
                 const userInfo = {
                     displayName: data.name
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        console.log(userInfo);
+                        saveUser(data.name, data.email);
                     })
                     .catch(err => console.log(err));
             })
@@ -40,7 +49,24 @@ const Signup = () => {
                 console.log(error)
                 setSignUPError(error.message)
             });
+    };
+
+
+    const saveUser = (name, email) => {
+        const user = { name, email };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setUserEmail(email);
+            })
     }
+
 
     const handleGoogleSignIn = () => {
         const provider = new GoogleAuthProvider();
@@ -48,7 +74,7 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
 
             })
             .catch(err => console.log(err));

@@ -9,6 +9,9 @@ import Login from '../../Pages/Login/Login';
 import Signup from '../../Pages/Signup/Signup';
 import Dashboard from '../../Pages/Dashboard/Dashboard';
 import PrivateRoute from './PrivateRoute';
+import DashboardLayout from '../../Pages/Main/DashboardLayout';
+import Allusers from '../../Pages/Dashboard/Allusers';
+import AdminRoute from './AdminRoute';
 
 export const router = createBrowserRouter([
     {
@@ -42,12 +45,24 @@ export const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup></Signup>
-            },
+            },                       
+        ]
+        
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children:
+        [
             {
                 path: '/dashboard',
-                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
-            }
-            
+                element: <Dashboard></Dashboard>
+            },
+        
+            {
+                path: '/dashboard/allusers',
+                element: <AdminRoute><Allusers></Allusers></AdminRoute>
+            },
         ]
     }
 ]);
