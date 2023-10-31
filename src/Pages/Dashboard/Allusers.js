@@ -31,6 +31,14 @@ const Allusers = () => {
             })
 
     }
+    const confirmDelete = (email) => {
+
+
+    }
+
+
+
+    
 
     const handleDeleteButton = id => {
         fetch(`http://localhost:5000/users/admin/${id}`, {
@@ -73,7 +81,7 @@ const Allusers = () => {
                                     : <p className="mx-9 font-bold uppercase">Admin</p>
                                     }
                                 </td>
-                                <td><button onClick={() => handleDeleteButton(user?._id)} className='btn bg-red-700 text-white font-bold'>Delete</button></td>
+                                <td><button onClick={() => handleDeleteButton(confirmDelete(user?.email))} className='btn bg-red-700 text-white font-bold'>Delete</button></td>
                             </tr>)
                         }
                     </tbody>
