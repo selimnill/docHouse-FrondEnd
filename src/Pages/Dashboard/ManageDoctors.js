@@ -53,7 +53,6 @@ const ManageDoctors = () => {
             <h2 className="text-center text-4xl font-bold mt-5 mb-7">Manage Doctors</h2>
             <div className="overflow-x-auto">
                 <table className="table">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th>Serial No.</th>

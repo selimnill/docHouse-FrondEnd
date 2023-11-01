@@ -17,7 +17,8 @@ const MyAppointment = () => {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
             });
-            const data = res.json();
+            const data = await  res.json();
+            console.log(data);
             return data;
         }
     })
