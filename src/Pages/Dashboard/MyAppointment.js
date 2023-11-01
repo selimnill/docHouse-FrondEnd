@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom';
 
 const MyAppointment = () => {
 
@@ -17,7 +18,7 @@ const MyAppointment = () => {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
             });
-            const data = await  res.json();
+            const data = await res.json();
             console.log(data);
             return data;
         }
@@ -36,6 +37,7 @@ const MyAppointment = () => {
                         <th>Treatment</th>
                         <th>Date</th>
                         <th>Time</th>
+                        <th>Payments</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +48,12 @@ const MyAppointment = () => {
                             <td>{booking?.treatment}</td>
                             <td>{booking?.appointmentDate}</td>
                             <td>{booking?.slot}</td>
+                            <td>
+                                {
+                                    booking.price && !booking.paid && <Link to={`/dashboard/payment/${booking._id}`}><button className='btn bg-green-700 text-white font-bold btn-sm w-14'>Pay</button></Link>
+
+                                }
+                            </td>
                         </tr>)
                     }
                 </tbody>

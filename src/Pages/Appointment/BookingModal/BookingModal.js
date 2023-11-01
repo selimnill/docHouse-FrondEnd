@@ -8,7 +8,7 @@ import PhoneInput from 'react-phone-number-input'
 
 
 const BookingModal = ({ bookingModal, setBookingModal, selectedDate, refetch }) => {
-    const { name, slots } = bookingModal;
+    const { name, slots, price } = bookingModal;
     const date = format(selectedDate, 'PP');
 
     const { user } = useContext(AuthContext);
@@ -31,6 +31,7 @@ const BookingModal = ({ bookingModal, setBookingModal, selectedDate, refetch }) 
             slot,
             email,
             phone,
+            price
         }
         console.log(booking);
 

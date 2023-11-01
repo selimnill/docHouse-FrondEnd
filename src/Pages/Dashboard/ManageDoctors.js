@@ -13,7 +13,7 @@ const ManageDoctors = () => {
         setDeleteDoctor(null);
     }
 
-    const { data: doctors = [], refetch } = useQuery({
+    const { data: doctorss = [], refetch } = useQuery({
         queryKey: ['doctors'],
         queryFn: async () => {
             fetch("http://localhost:5000/doctors", {
@@ -24,12 +24,13 @@ const ManageDoctors = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     setDoctors(data);
+                    console.log(data);
                 })
         }
     });
 
+    console.log(doctorss);
 
     const deleteDoctorButton = doctor => {
         fetch(`http://localhost:5000/doctors/${doctor?._id}`, {
