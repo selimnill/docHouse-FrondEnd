@@ -22,6 +22,8 @@ const MyAppointment = () => {
         }
     })
 
+    console.log(bookings);
+
     return (
         <div className="overflow-x-auto">
             <h2 className="text-3xl font-bold text-center mt-5 mb-5">My Appointments</h2>
@@ -37,7 +39,7 @@ const MyAppointment = () => {
                 </thead>
                 <tbody>
                     {
-                        bookings.map((booking, i) => <tr key={i}>
+                        bookings && bookings.map((booking, i) => <tr key={i}>
                             <th>{i + 1}</th>
                             <td>{booking?.patient}</td>
                             <td>{booking?.treatment}</td>
