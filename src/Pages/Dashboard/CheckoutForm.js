@@ -95,7 +95,7 @@ const CheckoutForm = ({booking}) => {
                         setTransactionId(paymentIntent.id);
                     }
                 })
-        }
+        }}
         setProcessing(false);
 
     return (
@@ -134,6 +134,6 @@ const CheckoutForm = ({booking}) => {
     </>
     );
 };
-}
+
 
 export default CheckoutForm;
