@@ -109,7 +109,7 @@ const CheckoutForm = ({ booking }) => {
     // }
 
     return (
-        <div className='w-[500px]  bg-slate-200 p-10  rounded-xl ml-60'>
+        <div className='w-[500px]  bg-slate-200 p-10  rounded-xl lg:ml-60 ml-5 md:ml-40'>
             <form onSubmit={handleSubmit} className='mx-auto'>
                 <CardElement className='bg-sky-700 p-5 rounded-xl'
                     options={{

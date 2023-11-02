@@ -16,6 +16,7 @@ import AddDoctor from '../../Pages/Dashboard/AddDoctor';
 import ManageDoctors from '../../Pages/Dashboard/ManageDoctors';
 import Payment from '../../Pages/Dashboard/Payment';
 import ErrorPage from '../../Components/ErrorPage/ErrorPage';
+import Location from '../../Components/Location/Location';
 
 export const router = createBrowserRouter([
     {
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/about',
-                element: <About></About>
+                element: <Location></Location>
             },
             {
                 path:'/appointment',

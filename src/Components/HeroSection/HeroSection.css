@@ -1,4 +1,4 @@
-.heroSect {
+/* .heroSect {
     background: linear-gradient(to right, rgba(10, 9, 9, 0.9), rgba(0, 0, 0, 0.6)), url('../../assets/images/chair.png');
     height: 500px;
     width: 900px;
@@ -22,3 +22,17 @@
     margin-top: 380px;
 }
 
+
+@media screen and (max-width: 650px) {
+    .heroSect img{
+        width: 70px;
+    }
+    .info {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 50%;
+    }
+    
+} */

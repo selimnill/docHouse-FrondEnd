@@ -27,15 +27,15 @@ const MyAppointment = () => {
     })
     console.log('bookings', bookings);
     if (loader) {
-        <span className="loading loading-ball loading-2xl"></span>
+        <span className="loading loading-ball loading-3xl mt-5"></span>
     }
 
     console.log(bookings);
 
     return (
-        <div className="overflow-x-auto">
-            <h2 className="text-3xl font-bold text-center mt-5 mb-5">My Appointments</h2>
-            <table className="table">
+        <div className="">
+            <h2 className="text-3xl font-bold text-center mt-20 sm:mt-40 mb-5">My Appointments</h2>
+            <table className="table sm:w-96">
                 <thead>
                     <tr>
                         <th></th>
