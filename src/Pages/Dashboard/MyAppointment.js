@@ -7,6 +7,8 @@ const MyAppointment = () => {
 
     const { user } = useContext(AuthContext);
 
+    const { loader } = useContext(AuthContext);
+
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
     // get data from server using query
@@ -23,6 +25,10 @@ const MyAppointment = () => {
             return data;
         }
     })
+    console.log('bookings', bookings);
+    if (loader) {
+        <span className="loading loading-ball loading-2xl"></span>
+    }
 
     console.log(bookings);
 
@@ -53,7 +59,7 @@ const MyAppointment = () => {
                                     booking.price && !booking.paid && <Link to={`/dashboard/payment/${booking._id}`}><button className='btn bg-green-700 text-white font-bold btn-sm w-14'>Pay</button></Link>
                                 }
                                 {
-                                   booking.price && booking.paid && <span className='text-green-500'>Paid</span>
+                                    booking.price && booking.paid && <span className='text-green-500 mx-3 font-bold'>Paid</span>
                                 }
                             </td>
                         </tr>)
