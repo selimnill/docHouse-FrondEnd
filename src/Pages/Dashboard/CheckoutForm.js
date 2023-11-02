@@ -1,6 +1,7 @@
-import React from 'react';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import React, { useEffect, useState } from 'react';
 
-const s = () => {
+const CheckoutForm = ({booking}) => {
 
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
@@ -23,7 +24,7 @@ const s = () => {
             body: JSON.stringify({ price }),
         })
             .then((res) => res.json())
-            .then((data) => setClientSecret(data.clientSecret));
+            .then((booking) => setClientSecret(booking.clientSecret));
     }, [price]);
 
     const handleSubmit = async (event) => {
@@ -71,7 +72,7 @@ const s = () => {
         }
         if (paymentIntent.status === "succeeded") {
             console.log('card info', card);
-            // store payment info in the database
+            // store payment info in the bookingbase
             const payment = {
                 price,
                 transactionId: paymentIntent.id,
@@ -87,9 +88,9 @@ const s = () => {
                 body: JSON.stringify(payment)
             })
                 .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.insertedId) {
+                .then(booking => {
+                    console.log(booking);
+                    if (booking.insertedId) {
                         setSuccess('Congrats! your payment completed');
                         setTransactionId(paymentIntent.id);
                     }
@@ -133,5 +134,6 @@ const s = () => {
     </>
     );
 };
+}
 
-export default s;
+export default CheckoutForm;
