@@ -1,7 +1,8 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
-const CheckoutForm = ({data}) => {
+const CheckoutForm = ({ data }) => {
 
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
@@ -22,10 +23,11 @@ const CheckoutForm = ({data}) => {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify({ price }),
+
         })
             .then((res) => res.json())
-            .then((data) => {
-                setClientSecret(data.clientSecret)
+            .then((result) => {
+                setClientSecret(result.clientSecret)
             });
     }, [price]);
 
@@ -93,47 +95,55 @@ const CheckoutForm = ({data}) => {
                 .then(data => {
                     console.log(data);
                     if (data.insertedId) {
-                        setSuccess('Congrats! your payment completed');
+                        setSuccess();
+                        toast.success('Congrats! your payment completed');
                         setTransactionId(paymentIntent.id);
                     }
                 })
-        }}
-        setProcessing(false);
+        }
+    }
+    // setProcessing(false);
+    // }
 
     return (
-        <>
-        <form onSubmit={handleSubmit}>
-            <CardElement
-                options={{
-                    style: {
-                        base: {
-                            fontSize: '16px',
-                            color: '#424770',
-                            '::placeholder': {
-                                color: '#aab7c4',
+        <div className='w-[500px]  bg-slate-200 p-10  rounded-xl ml-60'>
+            <form onSubmit={handleSubmit} className='mx-auto'>
+                <CardElement className='bg-sky-700 p-5 rounded-xl'
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '18px',
+                                color: '#281A17',
+                                fontWeight: 'bold',
+                                '::placeholder': {
+                                    color: 'white',
+                                },
+                            },
+                            invalid: {
+                                color: '#F3E2DF',
+                                fontWeight: 'bold',
                             },
                         },
-                        invalid: {
-                            color: '#9e2146',
-                        },
-                    },
-                }}
-            />
-            <button
-                className='btn btn-sm mt-4 btn-primary'
-                type="submit"
-                disabled={!stripe || !clientSecret || processing}>
-                Pay
-            </button>
-        </form>
-        <p className="text-red-500">{cardError}</p>
-        {
-            success && <div>
-                <p className='text-green-500'>{success}</p>
-                <p>Your transactionId: <span className='font-bold'>{transactionId}</span></p>
-            </div>
-        }
-    </>
+                    }}
+                />
+                <div className='flex justify-center items-center mt-5'>
+                    <button
+                        className='btn mt-4 font-bold bg-green-700 text-white w-32 '
+                        type="submit"
+                        disabled={!stripe || !clientSecret || processing}>
+                        Pay
+                    </button>
+                </div>
+            </form>
+            <p className="text-red-500">{cardError}</p>
+            {
+                success && <div className='mt-9 text-center'>
+                    <p>Your transactionId: <span className='font-bold'>
+                        {transactionId}
+                    </span></p>
+                </div>
+            }
+        </div>
     );
 };
 
