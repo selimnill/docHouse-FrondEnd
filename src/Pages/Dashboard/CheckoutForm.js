@@ -9,7 +9,9 @@ const CheckoutForm = ({data}) => {
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState("");
 
-    
+    const stripe = useStripe();
+    const elements = useElements();
+    const { price, email, patient, _id } = data;
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
