@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 
 
@@ -48,7 +49,10 @@ const AddDoctor = () => {
                     })
                         .then(res => res.json())
                         .then(result => {
-                            console.log(result);
+                            console.log('result', result);
+                            if(result.acknowledged === true){
+                                toast.success("Doctor Added Successfully.!");
+                            }
                         })
                 }
             })

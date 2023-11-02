@@ -21,7 +21,7 @@ const ErrorPage = () => {
 
     return (
         <div>
-            <div className='w-96 h-full mx-auto mt-9 mb-10'>
+            <div className='w-[500px] h-full mx-auto mt-9 mb-10'>
                 <img src={photo} alt="" className='rounded-xl' />
             </div>
             <div className='text-center'>

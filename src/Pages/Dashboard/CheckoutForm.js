@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 
-const CheckoutForm = ({booking}) => {
+const CheckoutForm = ({data}) => {
 
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
@@ -11,7 +11,7 @@ const CheckoutForm = ({booking}) => {
 
     const stripe = useStripe();
     const elements = useElements();
-    const { price, email, patient, _id } = booking;
+    const { price, email, patient, _id } = data;
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -24,7 +24,9 @@ const CheckoutForm = ({booking}) => {
             body: JSON.stringify({ price }),
         })
             .then((res) => res.json())
-            .then((booking) => setClientSecret(booking.clientSecret));
+            .then((data) => {
+                setClientSecret(data.clientSecret)
+            });
     }, [price]);
 
     const handleSubmit = async (event) => {
@@ -72,12 +74,12 @@ const CheckoutForm = ({booking}) => {
         }
         if (paymentIntent.status === "succeeded") {
             console.log('card info', card);
-            // store payment info in the bookingbase
+            // store payment info in the database
             const payment = {
                 price,
                 transactionId: paymentIntent.id,
                 email,
-                bookingId: _id
+                dataId: _id
             }
             fetch('http://localhost:5000/payments', {
                 method: 'POST',
@@ -88,9 +90,9 @@ const CheckoutForm = ({booking}) => {
                 body: JSON.stringify(payment)
             })
                 .then(res => res.json())
-                .then(booking => {
-                    console.log(booking);
-                    if (booking.insertedId) {
+                .then(data => {
+                    console.log(data);
+                    if (data.insertedId) {
                         setSuccess('Congrats! your payment completed');
                         setTransactionId(paymentIntent.id);
                     }
