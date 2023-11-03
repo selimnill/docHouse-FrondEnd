@@ -44,6 +44,9 @@ const MyAppointment = () => {
                         <th>Date</th>
                         <th>Time</th>
                         <th>Payments</th>
+                        git add .
+                        git commit -m "updated"
+                        git push
                     </tr>
                 </thead>
                 <tbody>
