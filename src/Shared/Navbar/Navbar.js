@@ -29,7 +29,7 @@ const Navbar = () => {
     }, [theme]);
 
     return (
-        <div className="navbar bg-blue-400 font-bold sticky top-0  backdrop-filter backdrop-blur-lg g-opacity-30 border-b border-gray-200">
+        <div className="navbar font-bold sticky top-0  backdrop-filter backdrop-blur-lg g-opacity-30 border-b border-gray-200">
             <div className="navbar-start ">
                 <div className="dropdown">
                     <label tabIndex={1} className="btn btn-ghost lg:hidden">

@@ -16,7 +16,7 @@ const ManageDoctors = () => {
     const { data: doctorss = [], refetch } = useQuery({
         queryKey: ['doctors'],
         queryFn: async () => {
-            fetch("http://localhost:5000/doctors", {
+            fetch("https://doc-house-server-one.vercel.app/doctors", {
                 method: 'GET',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -33,7 +33,7 @@ const ManageDoctors = () => {
     console.log(doctorss);
 
     const deleteDoctorButton = doctor => {
-        fetch(`http://localhost:5000/doctors/${doctor?._id}`, {
+        fetch(`https://doc-house-server-one.vercel.app/doctors/${doctor?._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

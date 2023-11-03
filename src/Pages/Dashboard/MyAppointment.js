@@ -9,7 +9,7 @@ const MyAppointment = () => {
 
     const { loader } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const url = `https://doc-house-server-one.vercel.app/bookings?email=${user?.email}`;
 
     // get data from server using query
     const { data: bookings = [] } = useQuery({
@@ -35,7 +35,7 @@ const MyAppointment = () => {
     return (
         <div className="">
             <h2 className="text-3xl font-bold text-center mt-20 sm:mt-40 mb-5">My Appointments</h2>
-            <table className="table sm:w-96">
+            <table className="table w-full sm:w-3/4 md:w-1/2">
                 <thead>
                     <tr>
                         <th></th>

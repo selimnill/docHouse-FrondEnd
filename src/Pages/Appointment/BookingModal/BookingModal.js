@@ -35,7 +35,7 @@ const BookingModal = ({ bookingModal, setBookingModal, selectedDate, refetch }) 
         }
         console.log(booking);
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://doc-house-server-one.vercel.app/bookings', {
             method: 'POST',
             headers:
             {

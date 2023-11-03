@@ -13,7 +13,7 @@ const AddDoctor = () => {
     const { data: categories } = useQuery({
         queryKey: ['addDoctor'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/appointmentCategories/`)
+            const res = await fetch(`https://doc-house-server-one.vercel.app/appointmentCategories/`)
             const data = await res.json()
             return data;
         }
@@ -39,7 +39,7 @@ const AddDoctor = () => {
                         categories: data.categories,
                         image: imgData.data.display_url,
                     }
-                    fetch('http://localhost:5000/doctors', {
+                    fetch('https://doc-house-server-one.vercel.app/doctors', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

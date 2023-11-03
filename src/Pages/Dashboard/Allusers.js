@@ -8,14 +8,14 @@ const Allusers = () => {
     const { data: allusers = [], refetch } = useQuery({
         queryKey: ['allusers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users')
+            const res = await fetch('https://doc-house-server-one.vercel.app/users')
             const data = res.json();
             return data;
         }
     });
 
     const handleAdminButton = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://doc-house-server-one.vercel.app/users/admin/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`,
@@ -41,7 +41,7 @@ const Allusers = () => {
     
 
     const handleDeleteButton = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://doc-house-server-one.vercel.app/users/admin/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

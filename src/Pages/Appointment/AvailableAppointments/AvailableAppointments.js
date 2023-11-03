@@ -14,7 +14,7 @@ const AvailableAppointments = ({ selected }) => {
     const { data: appointment = [], refetch, isLoading } = useQuery({
         queryKey: ['appointment', date],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/appointment?date=${date}`);  ///v2/appointmentOptions?date=${date}
+            const res = await fetch(`https://doc-house-server-one.vercel.app/appointment?date=${date}`);  ///v2/appointmentOptions?date=${date}
             const data = await res.json();
             return data
         }
