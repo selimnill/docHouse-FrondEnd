@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import { FaMoon } from "react-icons/fa";
 import { FaSun } from "react-icons/fa";
+import logo from '../../assets/logo/dental logo.png'
 
 const Navbar = () => {
 
@@ -51,6 +52,7 @@ const Navbar = () => {
                     </ul>
 
                 </div>
+                <Link to='/'><img className='w-20' src={logo} alt="" /></Link>
                 <Link to='/' className="btn btn-ghost normal-case text-xl font-extrabold">Doctor's House</Link>
             </div>
             <div className="navbar-center hidden lg:flex">

@@ -31,18 +31,16 @@ const Allusers = () => {
             })
 
     }
-    const confirmDelete = (email) => {
 
-
-    }
 
 
 
     
-
-    const handleDeleteButton = id => {
-        fetch(`https://doc-house-server-one.vercel.app/users/admin/${id}`, {
-            method: 'DELETE'
+// doc-house-server-one.vercel.app
+    const handleDeleteButton = user => {
+        fetch(`https://localhost:5000/admin/${user?._id}`, {
+            method: 'DELETE',
+            body: JSON.stringify(user?._id),
         })
             .then(res => res.json())
             .then(data => {
@@ -67,7 +65,7 @@ const Allusers = () => {
                             <th>Name</th>
                             <th>email</th>
                             <th>Admin</th>
-                            <th>Delete</th>
+                            {/* <th>Delete</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -81,7 +79,7 @@ const Allusers = () => {
                                     : <p className="mx-9 font-bold uppercase">Admin</p>
                                     }
                                 </td>
-                                <td><button onClick={() => handleDeleteButton(confirmDelete(user?.email))} className='btn bg-red-700 text-white font-bold'>Delete</button></td>
+                                {/* <td><button onClick={() => handleDeleteButton(user)} className='btn bg-red-700 text-white font-bold'>Delete</button></td> */}
                             </tr>)
                         }
                     </tbody>

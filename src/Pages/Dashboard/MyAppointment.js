@@ -35,7 +35,7 @@ const MyAppointment = () => {
     return (
         <div className="">
             <h2 className="text-3xl font-bold text-center mt-20 sm:mt-40 mb-5">My Appointments</h2>
-            <table className="table w-full sm:w-3/4 md:w-1/2">
+            <table className="table w-full ">
                 <thead>
                     <tr>
                         <th></th>
@@ -47,7 +47,7 @@ const MyAppointment = () => {
                         
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className='sm:text-sm'>
                     {
                         bookings && bookings.map((booking, i) => <tr key={i}>
                             <th>{i + 1}</th>
