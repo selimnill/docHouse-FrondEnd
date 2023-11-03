@@ -13,7 +13,9 @@ const HeroSection = () => {
                         <h1 className="mb-5 text-4xl font-bold">Let's Impress everyone with Smile </h1>
                         <p className="mb-5 w-96">Proving with specialized and highly qualified doctores and the best dental treatment on the New York City.</p>
                         <Link to='/appointment'><button className="btn btn-primary font-extrabold mb-9">get started</button></Link>
-
+                        git add .
+git commit -m "updated"
+git push
                     </div>
                 </div>
             </div>
